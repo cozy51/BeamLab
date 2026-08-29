@@ -1,0 +1,13 @@
+import {describe,expect,it} from 'vitest';
+import {sampleCase} from '../beam/defaults';
+import {solveBeam} from './beamSolver';
+
+describe('beam solver known solutions',()=>{
+ it('simply supported center point load',()=>{const c=structuredClone(sampleCase),r=solveBeam(c),I=20*40**3/12;expect(r.reactions[0].force).toBeCloseTo(500,6);expect(r.reactions[1].force).toBeCloseTo(500,6);expect(Math.abs(r.maxMoment.moment)).toBeCloseTo(1000*1000/4,4);expect(Math.abs(r.maxDeflection.deflection)).toBeCloseTo(1000*1000**3/(48*205000*I),4)});
+ it('cantilever tip point load',()=>{const c=structuredClone(sampleCase);c.support='cantilever';c.loads=[{id:'P',type:'point',magnitude:-1000,position:1000}];const r=solveBeam(c),I=20*40**3/12;expect(r.reactions[0].force).toBeCloseTo(1000,6);expect(Math.abs(r.reactions[1].moment)).toBeCloseTo(1e6,4);expect(Math.abs(r.maxDeflection.deflection)).toBeCloseTo(1000*1000**3/(3*205000*I),3)});
+ it('superposes full UDL and balances',()=>{const c=structuredClone(sampleCase);c.loads=[{id:'w',type:'udl',start:0,end:1000,startMagnitude:-1,endMagnitude:-1}];const r=solveBeam(c);expect(r.reactions[0].force).toBeCloseTo(500,5);expect(Math.abs(r.maxMoment.moment)).toBeCloseTo(125000,0);expect(r.equilibrium.forceResidual).toBeCloseTo(0,7)});
+ it('fixed-fixed center load satisfies fixed boundaries',()=>{const c=structuredClone(sampleCase);c.support='fixed-fixed';const r=solveBeam(c),forces=r.reactions.filter(x=>x.force).map(x=>x.force);expect(forces[0]).toBeCloseTo(500,5);expect(forces[1]).toBeCloseTo(500,5);expect(Math.abs(r.reactions[1].moment)).toBeCloseTo(125000,1);expect(Math.abs(r.points[0].rotation)).toBeLessThan(1e-10);expect(Math.abs(r.points.at(-1)!.deflection)).toBeLessThan(1e-8)});
+ it('overhang enforces both support displacements',()=>{const c=structuredClone(sampleCase);c.support='overhang';c.supportA=200;c.supportB=800;c.loads=[{id:'P',type:'point',magnitude:-1000,position:1000}];const r=solveBeam(c),at=(x:number)=>r.points.find(p=>p.x===x)!;expect(Math.abs(at(200).deflection)).toBeLessThan(1e-8);expect(Math.abs(at(800).deflection)).toBeLessThan(1e-8);expect(r.equilibrium.forceResidual).toBeCloseTo(0,7)});
+ it('calculates bending stress M/Z',()=>{const r=solveBeam(structuredClone(sampleCase)),Z=20*40**2/6;expect(Math.abs(r.maxStress.stress)).toBeCloseTo(250000/Z,6)});
+ it('converges from standard to high precision',()=>{const standard=structuredClone(sampleCase),high=structuredClone(sampleCase);high.divisions=5000;const a=solveBeam(standard),b=solveBeam(high);expect(Math.abs(a.maxDeflection.deflection-b.maxDeflection.deflection)).toBeLessThan(1e-6);expect(b.points.every(p=>Number.isFinite(p.deflection))).toBe(true)});
+});

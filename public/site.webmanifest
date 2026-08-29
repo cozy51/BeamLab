@@ -1,0 +1,10 @@
+{
+  "name":"BeamLab 材料力学・梁強度計算",
+  "short_name":"BeamLab",
+  "description":"機械設計者向け材料力学・梁計算ツール",
+  "start_url":"/",
+  "display":"standalone",
+  "background_color":"#edf1f4",
+  "theme_color":"#17344d",
+  "icons":[{"src":"/app-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

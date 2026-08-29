@@ -1,0 +1,13 @@
+export type SupportType='simply-supported'|'cantilever'|'fixed-fixed'|'propped-cantilever'|'overhang';
+export type SectionType='rectangle'|'circle'|'hollow-circle'|'hollow-rectangle'|'i-section'|'custom';
+export interface PointLoad{id:string;type:'point';magnitude:number;position:number}
+export interface DistributedLoad{id:string;type:'udl'|'linear';start:number;end:number;startMagnitude:number;endMagnitude:number}
+export interface MomentLoad{id:string;type:'moment';magnitude:number;position:number}
+export type BeamLoad=PointLoad|DistributedLoad|MomentLoad;
+export interface SectionInput{type:SectionType;b?:number;h?:number;d?:number;D?:number;B?:number;H?:number;t?:number;flangeWidth?:number;flangeThickness?:number;webThickness?:number;area?:number;inertia?:number;modulus?:number}
+export interface SectionProperties{area:number;inertia:number;modulus:number;outerFiber:number;label:string}
+export interface Material{id:string;name:string;youngModulus:number;poisson:number;density:number;yieldStrength:number;note?:string}
+export interface BeamCase{version:1;name:string;length:number;support:SupportType;supportA:number;supportB:number;loads:BeamLoad[];section:SectionInput;material:Material;divisions:200|1000|5000;deflectionLimit:'100'|'200'|'250'|'300'|'500'|'custom';customDeflection:number;safeThreshold:number;cautionThreshold:number}
+export interface ResultPoint{x:number;shear:number;moment:number;stress:number;rotation:number;deflection:number}
+export interface Reaction{position:number;force:number;moment:number;label:string}
+export interface BeamResult{points:ResultPoint[];reactions:Reaction[];maxMoment:ResultPoint;maxShear:ResultPoint;maxStress:ResultPoint;maxDeflection:ResultPoint;safetyFactor:number;deflectionAllowable:number;deflectionOk:boolean;equilibrium:{forceResidual:number;momentResidual:number};details:string[]}

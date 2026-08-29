@@ -1,0 +1,4 @@
+import type{BeamCase,BeamResult}from'../types/beam';
+function download(name:string,text:string,type:string){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();URL.revokeObjectURL(a.href)}
+export const exportJson=(c:BeamCase)=>download(`${c.name}.json`,JSON.stringify(c,null,2),'application/json');
+export const exportCsv=(r:BeamResult,name:string)=>download(`${name}.csv`,'\ufeffx [mm],V [N],M [N mm],sigma [MPa],theta [rad],delta [mm]\r\n'+r.points.map(p=>[p.x,p.shear,p.moment,p.stress,p.rotation,p.deflection].join(',')).join('\r\n'),'text/csv;charset=utf-8');

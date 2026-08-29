@@ -1,0 +1,1 @@
+import{describe,expect,it}from'vitest';import{toMm,toN,toNmm,toNPerMm}from'./units';describe('units',()=>{it('converts to N-mm',()=>{expect(toMm(1,'m')).toBe(1000);expect(toN(1,'kN')).toBe(1000);expect(toN(1,'kgf')).toBeCloseTo(9.80665);expect(toNmm(1,'kNm')).toBe(1e6);expect(toNPerMm(1,'kN/m')).toBe(1)})});

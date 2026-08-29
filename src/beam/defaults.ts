@@ -1,0 +1,3 @@
+import {materials} from '../data/materials';
+import type {BeamCase} from '../types/beam';
+export const sampleCase:BeamCase={version:1,name:'中央集中荷重（サンプル）',length:1000,support:'simply-supported',supportA:0,supportB:1000,loads:[{id:'P1',type:'point',magnitude:-1000,position:500}],section:{type:'rectangle',b:20,h:40},material:{...materials[0]},divisions:1000,deflectionLimit:'300',customDeflection:3,safeThreshold:2,cautionThreshold:1.2};
