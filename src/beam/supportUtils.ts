@@ -1,0 +1,3 @@
+import type{BeamSupport}from'../types/beam';
+/** Place a new support at the midpoint of the largest unoccupied beam interval. */
+export function nextSupportPosition(length:number,supports:BeamSupport[]):number{const xs=[...new Set([0,...supports.map(s=>s.position).filter(x=>x>=0&&x<=length),length])].sort((a,b)=>a-b);let bestA=0,bestB=length,bestGap=-1;for(let i=0;i<xs.length-1;i++){const gap=xs[i+1]-xs[i];if(gap>bestGap){bestA=xs[i];bestB=xs[i+1];bestGap=gap}}return(bestA+bestB)/2}

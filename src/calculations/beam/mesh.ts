@@ -1,0 +1,4 @@
+import type{BeamCase}from'../../types/beam';import{activeSupports}from'./supportPresets';
+/** FEM cubic interpolation needs fewer elements than the former curvature integration grid. */
+export function effectiveElementCount(setting:BeamCase['divisions']):number{return setting===200?100:setting===1000?250:500}
+export function createMesh(c:BeamCase):number[]{const count=effectiveElementCount(c.divisions),xs=Array.from({length:count+1},(_,i)=>c.length*i/count);for(const s of activeSupports(c))xs.push(s.position);for(const l of c.loads)if(l.type==='point'||l.type==='moment')xs.push(l.position);else xs.push(l.start,l.end);return[...new Set(xs.map(x=>+x.toFixed(10)))].sort((a,b)=>a-b)}

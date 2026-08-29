@@ -1,0 +1,2 @@
+/** Consistent nodal load for linearly varying q, upward positive. */
+export function linearLoadVector(q0:number,q1:number,L:number):[number,number,number,number]{return[L*(7*q0+3*q1)/20,L**2*(3*q0+2*q1)/60,L*(3*q0+7*q1)/20,-(L**2)*(2*q0+3*q1)/60]}
