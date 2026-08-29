@@ -65,3 +65,16 @@ footer{line-height:1.7;padding:17px}
 @media(max-width:760px){.brand-mark{width:48px;height:48px;flex-basis:48px}}
 @media(max-width:760px){.chart-summary{width:100%;min-width:0}.chart-summary b{font-size:18px}.chart-summary .summary-position,.chart-summary .summary-scale{text-align:left}.chart-title{width:100%}}
 @media print{body,.info-tabs article,.info-tabs article p,.diagram-card text,.chart-card text,.results dt,.results dd small,footer{font-size:var(--font-size-min)}}
+
+/* Support-position summary and engineering annotations in the load diagram. */
+.support-state{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px;padding:11px;background:#eef7f7;border:1px solid #b9d9d9;border-left:4px solid #17818a;border-radius:5px;color:#31596b}
+.support-state strong{grid-column:1/4;font-size:15px;color:#116b73}
+.support-state span{font-size:14px;text-align:center;padding-top:5px;border-top:1px solid #cde1e1}
+.support-roller{fill:#fff;stroke:#456c86;stroke-width:2}
+.support-label text:first-child{font-weight:700;fill:#244a64}
+.support-label text:last-child{fill:#526d7f}
+.beam-dimension line{stroke:#557184;stroke-width:1.2}
+.beam-dimension text{fill:#3f5e72;font-weight:600}
+.sign-legend rect{fill:#fff8e6;stroke:#e1c579}
+.sign-legend text{fill:#765720;font-weight:600}
+@media(max-width:760px){.support-state{grid-template-columns:1fr}.support-state strong{grid-column:1}.support-state span{text-align:left}}

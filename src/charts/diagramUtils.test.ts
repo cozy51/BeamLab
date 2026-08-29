@@ -1,0 +1,2 @@
+import{describe,expect,it}from'vitest';import{rotationDirection,signedNumber,verticalDirection}from'./diagramUtils';
+describe('load diagram signs',()=>{it('maps vertical force signs',()=>{expect(verticalDirection(1)).toBe('up');expect(verticalDirection(-1)).toBe('down');expect(verticalDirection(0)).toBe('zero')});it('maps moment signs',()=>{expect(rotationDirection(1)).toBe('counterclockwise');expect(rotationDirection(-1)).toBe('clockwise')});it('formats explicit positive sign',()=>{expect(signedNumber(10,String)).toBe('+10');expect(signedNumber(-10,String)).toBe('-10')})});

@@ -1,4 +1,4 @@
-export type SupportType='simply-supported'|'cantilever'|'fixed-fixed'|'propped-cantilever'|'overhang';
+export type SupportType='simply-supported'|'cantilever'|'fixed-fixed'|'propped-cantilever';
 export type SectionType='rectangle'|'circle'|'hollow-circle'|'hollow-rectangle'|'i-section'|'custom';
 export interface PointLoad{id:string;type:'point';magnitude:number;position:number}
 export interface DistributedLoad{id:string;type:'udl'|'linear';start:number;end:number;startMagnitude:number;endMagnitude:number}
