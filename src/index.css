@@ -77,4 +77,7 @@ footer{line-height:1.7;padding:17px}
 .beam-dimension text{fill:#3f5e72;font-weight:600}
 .sign-legend rect{fill:#fff8e6;stroke:#e1c579}
 .sign-legend text{fill:#765720;font-weight:600}
+.load-annotation text{font-weight:600;fill:#8b3434}
+.load-position-dimension line{stroke:#b86a6a;stroke-width:1.1;stroke-dasharray:3 2}
+.load-position-dimension text,.load-position-zero{fill:#8b4545;font-weight:600}
 @media(max-width:760px){.support-state{grid-template-columns:1fr}.support-state strong{grid-column:1}.support-state span{text-align:left}}
