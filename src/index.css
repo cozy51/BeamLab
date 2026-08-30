@@ -77,6 +77,9 @@ footer{line-height:1.7;padding:17px}
 .support-label text:last-child{fill:#526d7f}
 .beam-dimension line{stroke:#557184;stroke-width:1.2}
 .beam-dimension text{fill:#3f5e72;font-weight:600}
+.convention-legend{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:0 4px 8px;padding:7px 10px;background:#fff8e6;border:1px solid #e1c579;border-radius:6px}
+.convention-legend .legend-item{display:flex;align-items:center;gap:6px;font-size:var(--font-size-min);color:#765720;font-weight:600;white-space:nowrap}
+.convention-legend svg{flex:none;width:auto;height:auto;display:inline-block}
 .sign-legend rect{fill:#fff8e6;stroke:#e1c579}
 .sign-legend text{fill:#765720;font-weight:600}
 .load-annotation text{font-weight:600;fill:#8b3434}
